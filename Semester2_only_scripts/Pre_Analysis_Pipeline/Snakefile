@@ -1,0 +1,19 @@
+rule all:
+    input:
+        "/Users/claudiumihai/MPhys/Analysis/Workflow/Pre_Omnifold/CPV_validation/EFT_cp_odd_NP2_1_CWTIL1_detector.csv",
+        "/Users/claudiumihai/MPhys/Analysis/Workflow/Pre_Omnifold/CPV_validation/EFT_cp_odd_NP2_1_CWTIL1_particle.csv",
+        "/Users/claudiumihai/MPhys/Analysis/Workflow/Pre_Omnifold/CPV_validation/EFT_cp_odd_NP2_1_CWTIL1_detector.png",
+        "/Users/claudiumihai/MPhys/Analysis/Workflow/Pre_Omnifold/CPV_validation/EFT_cp_odd_NP2_1_CWTIL1_particle.png"
+
+rule process_root_file:
+    input:
+        root_file="/Users/claudiumihai/MPhys/Analysis/Workflow/Pre_Omnifold/CPV_validation/ROOT_files/CWTIL1_NP21.root"
+    output:
+        det_csv="/Users/claudiumihai/MPhys/Analysis/Workflow/Pre_Omnifold/CPV_validation/EFT_cp_odd_NP2_1_CWTIL1_detector.csv",
+        part_csv="/Users/claudiumihai/MPhys/Analysis/Workflow/Pre_Omnifold/CPV_validation/EFT_cp_odd_NP2_1_CWTIL1_particle.csv",
+        det_plot="/Users/claudiumihai/MPhys/Analysis/Workflow/Pre_Omnifold/CPV_validation/EFT_cp_odd_NP2_1_CWTIL1_detector.png",
+        part_plot="/Users/claudiumihai/MPhys/Analysis/Workflow/Pre_Omnifold/CPV_validation/EFT_cp_odd_NP2_1_CWTIL1_particle.png"
+    shell:
+        """
+        python /Users/claudiumihai/MPhys/Analysis/Workflow/Pre_Omnifold/CPV_validation/pre_omni_with_dressing.py {input.root_file} {output.det_csv} {output.part_csv} {output.det_plot} {output.part_plot}
+        """
